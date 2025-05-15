@@ -47,44 +47,43 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 
 ## 📂 Arborescence du projet
 
-📁 SAE23/
-├── 📁 docs/                     # Documentation du projet
-│   ├── gantt.pdf               # Diagramme de GANTT
-│   ├── schema_bd.png           # Schéma de la base de données
-│   ├── captures/               # Captures d'écran (site, dashboard, etc.)
-│   └── rapport_final.pdf       # Rapport ou synthèse de projet
+SAE23-Supervision/
+├── docs/                    # Documentation du projet
+│   ├── gantt.pdf
+│   ├── schema_bd.png
+│   ├── captures/           # Captures d'écran
+│   └── rapport_final.pdf
 │
-├── 📁 glpi/                     # Dossiers liés à GLPI
-│   ├── plugin/                 # Plugin FusionInventory ou autres
-│   └── config/                 # Fichiers de config (si modifiés)
+├── glpi/                    # Fichiers liés à GLPI
+│   ├── plugin/
+│   └── config/
 │
-├── 📁 scripts/                  # Scripts d'automatisation
-│   ├── install_lamp.sh         # Installation de la stack LAMP
-│   ├── install_glpi.sh         # Installation de GLPI
-│   └── cron_tasks.sh           # Tâches planifiées pour automatisation
+├── scripts/                 # Scripts d'installation et d'automatisation
+│   ├── install_lamp.sh
+│   ├── install_glpi.sh
+│   └── cron_tasks.sh
 │
-├── 📁 sql/                      # Base de données
-│   ├── init_db.sql             # Script de création des tables
-│   └── insert_data.sql         # Données d’exemple si besoin
+├── sql/                     # Scripts SQL
+│   ├── init_db.sql
+│   └── insert_data.sql
 │
-├── 📁 www/                      # Dossier du site web dynamique
-│   ├── index.php               # Page d’accueil
-│   ├── admin.php               # Interface administrateur
-│   ├── gestionnaire.php        # Interface gestionnaire bâtiment
-│   ├── consultation.php        # Accès libre aux mesures
-│   └── assets/                 # CSS, JS, images
+├── www/                     # Site Web dynamique
+│   ├── index.php
+│   ├── admin.php
+│   ├── gestionnaire.php
+│   ├── consultation.php
+│   └── assets/             # CSS, JS, images
 │
-├── 📁 mqtt/                     # Scripts MQTT (si utilisés)
-│   ├── subscriber.py           # Récupération des mesures
-│   └── publisher.py            # Simulations de capteurs
+├── mqtt/                    # Scripts MQTT (optionnel)
+│   ├── subscriber.py
+│   └── publisher.py
 │
-├── 📁 docker/                   # Fichiers pour les conteneurs (optionnel)
-│   └── docker-compose.yml      # Stack complète (Mosquitto, InfluxDB, etc.)
+├── docker/                  # Fichiers Docker (optionnel)
+│   └── docker-compose.yml
 │
-├── .gitignore                  # Fichiers/dossiers à ignorer par Git
-├── README.md                   # Description complète du projet
-└── LICENSE                     # Licence (optionnelle)
-
+├── .gitignore
+├── README.md
+└── LICENSE
 
 
 ## 🧪 Déploiement local
