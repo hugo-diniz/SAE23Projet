@@ -45,47 +45,6 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 - 🔄 Scripts Bash pour l'automatisation (crontab)
 
 
-## 📂 Arborescence du projet
-
-SAE23-Supervision/
-├── docs/                    # Documentation du projet
-│   ├── gantt.pdf
-│   ├── schema_bd.png
-│   ├── captures/           # Captures d'écran
-│   └── rapport_final.pdf
-│
-├── glpi/                    # Fichiers liés à GLPI
-│   ├── plugin/
-│   └── config/
-│
-├── scripts/                 # Scripts d'installation et d'automatisation
-│   ├── install_lamp.sh
-│   ├── install_glpi.sh
-│   └── cron_tasks.sh
-│
-├── sql/                     # Scripts SQL
-│   ├── init_db.sql
-│   └── insert_data.sql
-│
-├── www/                     # Site Web dynamique
-│   ├── index.php
-│   ├── admin.php
-│   ├── gestionnaire.php
-│   ├── consultation.php
-│   └── assets/             # CSS, JS, images
-│
-├── mqtt/                    # Scripts MQTT (optionnel)
-│   ├── subscriber.py
-│   └── publisher.py
-│
-├── docker/                  # Fichiers Docker (optionnel)
-│   └── docker-compose.yml
-│
-├── .gitignore
-├── README.md
-└── LICENSE
-
-
 ## 🧪 Déploiement local
 
 ### Prérequis
