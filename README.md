@@ -5,14 +5,12 @@ Réalisé par : **Timeo Champigny, Sarah Perez, Oihan Martin dit-Neuville, Hugo 
 Encadrant : M. Massaoudi  
 📅 Année BUT1 2024-2025
 
----
 
 ## 📌 Contexte du projet
 
 Dans le cadre de la SAÉ 2.03, nous avons été chargés de concevoir une **solution de supervision réseau** pour une infrastructure simulée.  
 Le but est de **faciliter la gestion des équipements** et **centraliser les informations techniques** dans une interface claire et fonctionnelle.
 
----
 
 ## 🎯 Objectifs
 
@@ -22,7 +20,6 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 - Gérer les **utilisateurs et leurs accès** à la plateforme
 - Offrir une **interface Web dynamique** pour la consultation
 
----
 
 ## 🧰 Technologies utilisées
 
@@ -37,7 +34,6 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 | 🧪 GNS3          | Simulation du réseau virtuel                |
 | 📦 VirtualBox    | Virtualisation des machines                 |
 
----
 
 ## ⚙️ Fonctionnalités principales
 
@@ -48,7 +44,6 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 - ⏰ Planification automatique des tâches d’inventaire
 - 🔄 Scripts Bash pour l'automatisation (crontab)
 
----
 
 ## 📂 Arborescence du projet
 
@@ -63,7 +58,6 @@ yaml
 Copier
 Modifier
 
----
 
 ## 🧪 Déploiement local
 
