@@ -29,7 +29,7 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 | Apache        | Serveur Web                                 |
 | MariaDB       | Base de données relationnelle               |
 | PHP           | Langage côté serveur                        |
-| 🛠GLPI          | Solution de gestion d'infrastructure IT     |
+| GLPI          | Solution de gestion d'infrastructure IT     |
 | FusionInventory | Plugin d'inventaire automatique pour GLPI |
 | GNS3          | Simulation du réseau virtuel                |
 | VirtualBox    | Virtualisation des machines                 |
@@ -37,12 +37,12 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 
 ## ⚙️ Fonctionnalités principales
 
-- 📋 Interface Web GLPI personnalisée
-- 🖥️ Détection automatique du matériel via FusionInventory
-- 📈 Visualisation des statistiques réseau
-- 🔐 Système d’authentification multi-profils (admin, gestionnaire, utilisateur)
-- ⏰ Planification automatique des tâches d’inventaire
-- 🔄 Scripts Bash pour l'automatisation (crontab)
+- Interface Web GLPI personnalisée
+- 🖥Détection automatique du matériel via FusionInventory
+- Visualisation des statistiques réseau
+- Système d’authentification multi-profils (admin, gestionnaire, utilisateur)
+- Planification automatique des tâches d’inventaire
+- Scripts Bash pour l'automatisation (crontab)
 
 
 ## 🧪 Déploiement local
