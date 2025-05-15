@@ -52,4 +52,35 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 
 ## 📂 Arborescence du projet
 
+├── docs/ # Captures d'écran, GANTT, schémas BD
+├── glpi/ # Configuration GLPI + plugins
+├── scripts/ # Scripts d'installation et de gestion
+├── sql/ # Scripts de création de la base de données
+├── www/ # Fichiers web du projet
+└── README.md # Ce fichier
+
+yaml
+Copier
+Modifier
+
+---
+
+## 🧪 Déploiement local
+
+### Prérequis
+- VirtualBox
+- VM Debian 11
+- Serveur LAMP (Apache, MariaDB, PHP)
+- Accès root
+
+### Installation
+
+```bash
+# Cloner ce dépôt
+git clone https://github.com/<user>/<repo>.git
+
+# Lancer les scripts d’installation
+cd scripts/
+bash install_lamp.sh
+bash install_glpi.sh
 
