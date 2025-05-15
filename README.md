@@ -38,7 +38,7 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 ## ⚙️ Fonctionnalités principales
 
 - Interface Web GLPI personnalisée
-- 🖥Détection automatique du matériel via FusionInventory
+- Détection automatique du matériel via FusionInventory
 - Visualisation des statistiques réseau
 - Système d’authentification multi-profils (admin, gestionnaire, utilisateur)
 - Planification automatique des tâches d’inventaire
