@@ -12,17 +12,17 @@ Réalisé par : **Timeo Champigny, Sarah Perez, Oihan Martin dit-Neuville, Hugo 
 ## 📌 Contexte du projet
 
 Dans le cadre de la SAÉ 23, nous devons concevoir une solution de supervision réseau pour une infrastructure simulée.
-Ce projet reflète le rôle du professionnel R&T, chargé de développer des **outils informatiques adaptés aux besoins de l’entreprise**, intégrant **gestion de données**, **traitements automatisés** et **interface web** conviviale.
-L’objectif est de centraliser les informations réseau dans une interface accessible et fonctionnelle, en mobilisant des compétences en développement et déploiement de services.
+Ce projet doit nous mettre à la place d'un professionel travaillant en R&T, chargé de développer des **outils informatiques adaptés aux besoins de l’entreprise**, intégrant **gestion de données**, **traitements automatisés** et **interface web** conviviale.
+L’objectif est de centraliser les informations réseau dans une interface accessible et fonctionnelle.
 
 
 ## 🎯 Objectifs
 
 - Mettre en place une chaîne de traitement via des conteneurs.
-- Créer un dashboard Grafana complet.
-- Coder un site web dynamique hébergé sur un serveur lampp.
-- Coder un script récupérant les données sur le bus MQTT (langage au choix : bash, php, C, python,…).
-- Créer et gérer une base de données MySQL.
+- Créer un dashboard **Grafana** complet.
+- Coder un site web dynamique hébergé sur un serveur **lampp**.
+- Coder un script récupérant les données sur le bus **MQTT** (langage au choix : bash, php, C, python,…).
+- Créer et gérer une base de données **MySQL**.
 - Automatiser la chaîne de traitement (scripts dans crontab)
 
 
@@ -37,8 +37,6 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 | Node-RED      | Outil de programmation visuelle (Flow)    |
 | Grafana       | Outil de visualisation de données    |
 | MQTT      | Protocole basé sur publish/subscribe    |
-| FusionInventory | Plugin d'inventaire automatique pour GLPI |
-| GNS3          | Simulation du réseau virtuel                |
 | VMWare   | Outils de virtualisation pour la VM               |
 
 
