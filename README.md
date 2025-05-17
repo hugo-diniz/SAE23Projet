@@ -1,8 +1,11 @@
 # SAé 23 – Mettre en place une solution informatique pour l’entreprise
 
-Projet de deuxième semestre du BUT Réseaux & Télécommunications - IUT de Blagnac  
+Projet de S2 du BUT Réseaux & Télécommunications - IUT de Blagnac 
+
 Réalisé par : **Timeo Champigny, Sarah Perez, Oihan Martin dit-Neuville, Hugo Diniz**  
-Encadrant : M. Massaoudi  
+
+À l'attention de M. Massaoudi  
+
 📅 Année BUT1 2024-2025
 
 
