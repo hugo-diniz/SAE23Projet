@@ -42,12 +42,7 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 
 ## ⚙️ Fonctionnalités principales
 
-- Interface Web GLPI personnalisée
-- Détection automatique du matériel via FusionInventory
-- Visualisation des statistiques réseau
-- Système d’authentification multi-profils (admin, gestionnaire, utilisateur)
-- Planification automatique des tâches d’inventaire
-- Scripts Bash pour l'automatisation (crontab)
+EN CONSTRUCTION...
 
 
 ## 🧪 Déploiement local
@@ -59,6 +54,7 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 
 ### Installation
 
+**EXEMPLE**
 ```bash
 # Cloner ce dépôt
 git clone https://github.com/<user>/<repo>.git
