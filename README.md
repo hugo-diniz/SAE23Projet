@@ -14,25 +14,28 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 
 ## 🎯 Objectifs
 
-- Déployer une solution de supervision complète et fonctionnelle
-- Assurer un **inventaire automatique** du matériel via un agent
-- Mettre en place un **dashboard de visualisation** des métriques réseau
-- Gérer les **utilisateurs et leurs accès** à la plateforme
-- Offrir une **interface Web dynamique** pour la consultation
+- Mettre en place une chaîne de traitement via des conteneurs.
+- Créer un dashboard Grafana complet.
+- Coder un site web dynamique hébergé sur un serveur lampp.
+- Coder un script récupérant les données sur le bus MQTT (langage au choix : bash, php, C, python,…).
+- Créer et gérer une base de données MySQL.
+- Automatiser la chaîne de traitement (scripts dans crontab)
 
 
 ## 🧰 Technologies utilisées
 
 | Composant       | Description                                  |
 |------------------|---------------------------------------------|
-| Debian        | Système d'exploitation pour la VM           |
+| Lubuntu 22.04 LTS       | Système d'exploitation pour la VM           |
 | Apache        | Serveur Web                                 |
 | MariaDB       | Base de données relationnelle               |
 | PHP           | Langage côté serveur                        |
-| GLPI          | Solution de gestion d'infrastructure IT     |
+| Node-RED      | Outil de programmation visuelle (Flow)    |
+| Grafana       | Outil de visualisation de données    |
+| MQTT      | Protocole basé sur publish/subscribe    |
 | FusionInventory | Plugin d'inventaire automatique pour GLPI |
 | GNS3          | Simulation du réseau virtuel                |
-| VirtualBox    | Virtualisation des machines                 |
+| VMWare   | Outils de virtualisation pour la VM               |
 
 
 ## ⚙️ Fonctionnalités principales
@@ -48,10 +51,9 @@ Le but est de **faciliter la gestion des équipements** et **centraliser les inf
 ## 🧪 Déploiement local
 
 ### Prérequis
-- VirtualBox
-- VM Debian 11
+- VMWare Workstation Pro (Recommendé) ou VMWare Player 17
+- VM Lubuntu 22.40 LTS
 - Serveur LAMP (Apache, MariaDB, PHP)
-- Accès root
 
 ### Installation
 
