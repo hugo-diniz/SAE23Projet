@@ -8,8 +8,9 @@ Encadrant : M. Massaoudi
 
 ## 📌 Contexte du projet
 
-Dans le cadre de la SAÉ 23, nous avons été chargés de concevoir une **solution de supervision réseau** pour une infrastructure simulée.  
-Le but est de **faciliter la gestion des équipements** et **centraliser les informations techniques** dans une interface claire et fonctionnelle.
+Dans le cadre de la SAÉ 23, nous devons concevoir une solution de supervision réseau pour une infrastructure simulée.
+Ce projet reflète le rôle du professionnel R&T, chargé de développer des **outils informatiques adaptés aux besoins de l’entreprise**, intégrant **gestion de données**, **traitements automatisés** et **interface web** conviviale.
+L’objectif est de centraliser les informations réseau dans une interface accessible et fonctionnelle, en mobilisant des compétences en développement et déploiement de services.
 
 
 ## 🎯 Objectifs
