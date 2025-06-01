@@ -1,0 +1,45 @@
+<?php
+// Paramètres de connexion à la base de données
+$host = 'localhost';
+$dbname = 'Mesures';
+$user = 'admin';
+$pass = 'passroot'; // Remplacez par votre mot de passe si besoin
+
+// Connexion à MySQL
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
+
+// Commande pour écouter le broker MQTT
+$brokerIP = "192.168.227.158";
+$topic = "capteurs/#"; // à adapter si un topic spécifique est utilisé
+$command = "mosquitto_sub -h $brokerIP -t '$topic' -C 1"; // -C 1 : lit 1 message et s'arrête
+
+// Exécution de la commande pour recevoir un message MQTT
+$json = shell_exec($command);
+$data = json_decode($json, true);
+
+if ($data) {
+    // Exemple attendu du message :
+    // {
+    //   "NomCap": "Capteur1",
+    //   "Date": "2025-06-01",
+    //   "Heure": "14:30:00",
+    //   "Valeur": 23.5
+    // }
+
+    $stmt = $pdo->prepare("INSERT INTO Mesure (Date, Heure, Valeur, NomCap) VALUES (:date, :heure, :valeur, :nomcap)");
+    $stmt->execute([
+        ':date' => $data['Date'],
+        ':heure' => $data['Heure'],
+        ':valeur' => $data['Valeur'],
+        ':nomcap' => $data['NomCap']
+    ]);
+
+    echo "Donnée insérée avec succès.\n";
+} else {
+    echo "Aucune donnée MQTT reçue ou format JSON invalide.\n";
+}
+?>
