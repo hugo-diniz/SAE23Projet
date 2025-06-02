@@ -1,7 +1,7 @@
 <?php
 // Paramètres de connexion à la base de données
 $host = 'localhost';
-$dbname = 'Mesures';
+$dbname = 'SAE';
 $user = 'admin';
 $pass = 'passroot'; // Remplacez par votre mot de passe si besoin
 
