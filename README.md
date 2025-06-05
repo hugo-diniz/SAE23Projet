@@ -57,7 +57,7 @@ EN CONSTRUCTION...
 **EXEMPLE**
 ```bash
 # Cloner ce dépôt
-git clone https://github.com/<user>/<repo>.git
+git clone https://github.com/hugo-diniz/SAE23Projet.git
 
 # Lancer les scripts d’installation
 cd scripts/
