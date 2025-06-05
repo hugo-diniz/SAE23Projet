@@ -6,7 +6,7 @@ Réalisé par : **Timeo Champigny, Sarah Perez, Oihan Martin dit-Neuville, Hugo 
 
 À l'attention de M. Massaoudi  
 
-📅 Année BUT1 2024-2025
+Année BUT1 2024-2025
 
 
 ## 📌 Contexte du projet
@@ -26,7 +26,7 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 - Automatiser la chaîne de traitement (scripts dans crontab)
 
 
-## 🧰 Technologies utilisées
+## Technologies utilisées
 
 | Composant       | Description                                  |
 |------------------|---------------------------------------------|
@@ -45,14 +45,14 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 EN CONSTRUCTION...
 
 
-## 🧪 Déploiement local
+## Déploiement local
 
 ### Prérequis
-- VMWare Workstation Pro (Recommendé) ou VMWare Player 17
+- VMWare Workstation Pro (Recommendé) ou VMWare Player 17 ou Dual Boot sur Lubuntu/Ubuntu 22.04 LTS
 - VM Lubuntu 22.40 LTS
 - Serveur LAMP (Apache, MariaDB, PHP)
 
-### Installation
+### Nécessaire avant chaque utilisation
 
 **EXEMPLE**
 ```bash
