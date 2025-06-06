@@ -227,7 +227,7 @@ $isLoggedIn = !empty($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
       </p>
       <p class="footer-github">
         Retrouvez-nous sur 
-        <a href="https://github.com/ton-utilisateur/ton-repo" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/hugo-diniz/SAE23Projet/tree/main" target="_blank" rel="noopener">GitHub</a>
       </p>
     </div>
   </footer>
