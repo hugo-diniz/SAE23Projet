@@ -58,7 +58,6 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 
 ### Nécessaire avant chaque utilisation
 
-**EXEMPLE**
 ```bash
 # Lancer les scripts d’installation
 docker start influxdbRT
