@@ -39,6 +39,10 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 | MQTT      | Protocole basé sur publish/subscribe    |
 | VMWare   | Outils de virtualisation pour la VM               |
 
+##Architecture du projet
+![Logo](Images/Architecture_projet.png)
+
+
 
 ## ⚙️ Fonctionnalités principales
 
