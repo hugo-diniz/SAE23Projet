@@ -4,9 +4,9 @@ Projet de S2 du BUT Réseaux & Télécommunications - IUT de Blagnac
 
 Réalisé par : **Timeo Champigny, Sarah Perez, Oihan Martin dit-Neuville, Hugo Diniz**  
 
-À l'attention de M. Massaoudi  
+À l'attention de **M. Massaoudi** 
 
-Année BUT1 2024-2025
+**Année BUT1 2024-2025**
 
 
 ## 📌 Contexte du projet
@@ -46,25 +46,24 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 
 ## ⚙️ Fonctionnalités principales
 
-EN CONSTRUCTION...
+- Possibilité de choisir les tables que les non-admins peuvent voir
 
 
 ## Déploiement local
 
 ### Prérequis
-- VMWare Workstation Pro (Recommendé) ou VMWare Player 17 ou Dual Boot sur Lubuntu/Ubuntu 22.04 LTS
+- VMWare Workstation Pro (Recommendé) ou VMWare Player 17
 - VM Lubuntu 22.40 LTS
-- Serveur LAMP (Apache, MariaDB, PHP)
+- Serveur XAMPP (Apache, MariaDB, PHP)
 
 ### Nécessaire avant chaque utilisation
 
 **EXEMPLE**
 ```bash
-# Cloner ce dépôt
-git clone https://github.com/hugo-diniz/SAE23Projet.git
-
 # Lancer les scripts d’installation
-cd scripts/
-bash install_lamp.sh
-bash install_glpi.sh
+docker start influxdbRT
+docker start grafanaRT
+docker start noderedRT
 
+docker exec -it influxdbRT influxdb
+docker inspect influxdbRT
