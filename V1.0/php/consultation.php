@@ -7,6 +7,7 @@ $db_username  = "adminA";
 $db_password  = "passroot";
 $dbname       = "sae23";
 
+
 $conn          = null;
 $errorDb       = '';
 $tables        = [];
