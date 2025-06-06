@@ -154,7 +154,7 @@ $isLoggedIn = !empty($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
         <li><a href="../index.html">Accueil</a></li>
         <li><a href="../presentation.html">Présentation</a></li>
         <li><a href="../projet.html">Projet</a></li>
-        <li><a href="admin.php" class="active">Admin</a></li>
+        <li><a href="admin.php" class="active"> Admin</a></li>
       </ul>
       <button id="menu-toggle" class="menu-toggle" aria-label="Menu">&#9776;</button>
     </nav>
