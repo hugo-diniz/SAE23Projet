@@ -1,45 +1,61 @@
 <?php
-// Paramètres de connexion à la base de données
+// Connexion à la base de données
 $host = 'localhost';
-$dbname = 'SAE';
-$user = 'admin';
-$pass = 'passroot'; // Remplacez par votre mot de passe si besoin
+$user = 'adminA';
+$password = 'passroot';
+$dbname = 'sae23';
 
-// Connexion à MySQL
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
+$conn = new mysqli($host, $user, $password, $dbname);
+if ($conn->connect_error) {
+    die("Erreur de connexion: " . $conn->connect_error);
 }
 
-// Commande pour écouter le broker MQTT
-$brokerIP = "192.168.227.158";
-$topic = "capteurs/#"; // à adapter si un topic spécifique est utilisé
-$command = "mosquitto_sub -h $brokerIP -t '$topic' -C 1"; // -C 1 : lit 1 message et s'arrête
-
-// Exécution de la commande pour recevoir un message MQTT
-$json = shell_exec($command);
+// Récupération du JSON via MQTT (1 message seulement)
+$json = shell_exec("mosquitto_sub -h mqtt.iut-blagnac.fr -t AM107/by-room/E207/data -C 1");
 $data = json_decode($json, true);
 
-if ($data) {
-    // Exemple attendu du message :
-    // {
-    //   "NomCap": "Capteur1",
-    //   "Date": "2025-06-01",
-    //   "Heure": "14:30:00",
-    //   "Valeur": 23.5
-    // }
+// Séparation des deux blocs
+$mesures = $data[0];
+$infos = $data[1];
 
-    $stmt = $pdo->prepare("INSERT INTO Mesure (Date, Heure, Valeur, NomCap) VALUES (:date, :heure, :valeur, :nomcap)");
-    $stmt->execute([
-        ':date' => $data['Date'],
-        ':heure' => $data['Heure'],
-        ':valeur' => $data['Valeur'],
-        ':nomcap' => $data['NomCap']
-    ]);
+// Date et heure actuelles
+$date = date('Y-m-d');
+$heure = date('H:i:s');
 
-    echo "Donnée insérée avec succès.\n";
-} else {
-    echo "Aucune donnée MQTT reçue ou format JSON invalide.\n";
+// Salle d'origine
+$nomSalle = $infos["room"];
+
+// Liste des capteurs à traiter
+$capteurs = [
+    "temperature" => "°C",
+    "humidity" => "%",
+    "activity" => "",
+    "co2" => "ppm",
+    "tvoc" => "ppb",
+    "illumination" => "lux",
+    "infrared" => "",
+    "infrared_and_visible" => "",
+    "pressure" => "hPa"
+];
+
+// 1. Insérer la salle si elle n'existe pas
+$conn->query("INSERT IGNORE INTO Salle (NomSalle) VALUES ('$nomSalle')");
+
+// 2. Pour chaque capteur : insérer dans Capteur (si besoin) + dans Mesure
+foreach ($capteurs as $nom => $unite) {
+    $valeur = $mesures[$nom];
+    $nomCapteur = $nom . "_" . $nomSalle;
+
+    // Insérer le capteur s'il n'existe pas
+    $conn->query("INSERT IGNORE INTO Capteur (NomCap, Type, Unite, NomSalle) 
+                  VALUES ('$nomCapteur', '$nom', '$unite', '$nomSalle')");
+
+    // Insérer la mesure
+    $conn->query("INSERT INTO Mesure (Date, Heure, Valeur, NomCap) 
+                  VALUES ('$date', '$heure', $valeur, '$nomCapteur')");
 }
+
+echo "Mesures insérées avec succès.\n";
+$conn->close();
 ?>
+
