@@ -1,0 +1,774 @@
+[
+    {
+        "id": "3d72baa2624fae26",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ea5ab5a484063d95",
+        "type": "mqtt in",
+        "z": "3d72baa2624fae26",
+        "d": true,
+        "name": "MQTT Input",
+        "topic": "AM107/by-room/+/data",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 370,
+        "y": 600,
+        "wires": [
+            [
+                "b02a3305493e77c7"
+            ]
+        ]
+    },
+    {
+        "id": "b02a3305493e77c7",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Extract Data Fields",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "msg",
+                "to": "payload[0].temperature",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "msg",
+                "to": "payload[0].humidity",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "co2",
+                "pt": "msg",
+                "to": "payload[0].co2",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "illumination",
+                "pt": "msg",
+                "to": "payload[0].illumination",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "deviceName",
+                "pt": "msg",
+                "to": "payload[1].deviceName",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "room",
+                "pt": "msg",
+                "to": "payload[1].room",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "floor",
+                "pt": "msg",
+                "to": "payload[1].floor",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "Building",
+                "pt": "msg",
+                "to": "payload[1].Building",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 600,
+        "wires": [
+            [
+                "4fb0e3c694d1f0d6"
+            ]
+        ]
+    },
+    {
+        "id": "4fb0e3c694d1f0d6",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Create InfluxDB Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{  \"temperature\": temperature,  \"humidity\": humidity,  \"co2\": co2,  \"illumination\": illumination,  \"deviceName\": deviceName,  \"room\": room,  \"floor\": floor,  \"Building\": Building}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 600,
+        "wires": [
+            [
+                "330a4b1dcc11a632"
+            ]
+        ]
+    },
+    {
+        "id": "330a4b1dcc11a632",
+        "type": "influxdb out",
+        "z": "3d72baa2624fae26",
+        "influxdb": "influx_config",
+        "name": "InfluxDB Output",
+        "measurement": "sensor_data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 1010,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "b99d9e2c11734323",
+        "type": "mqtt in",
+        "z": "3d72baa2624fae26",
+        "name": "MQTT Input",
+        "topic": "AM107/by-room/+/data",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 480,
+        "wires": [
+            [
+                "f7afe5de12b87cfe",
+                "d606edfb052f097c"
+            ]
+        ]
+    },
+    {
+        "id": "d606edfb052f097c",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Extract Data Fields",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "msg",
+                "to": "payload[0].temperature",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "msg",
+                "to": "payload[0].humidity",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "co2",
+                "pt": "msg",
+                "to": "payload[0].co2",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "illumination",
+                "pt": "msg",
+                "to": "payload[0].illumination",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "deviceName",
+                "pt": "msg",
+                "to": "payload[1].deviceName",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "room",
+                "pt": "msg",
+                "to": "payload[1].room",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "floor",
+                "pt": "msg",
+                "to": "payload[1].floor",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "Building",
+                "pt": "msg",
+                "to": "payload[1].Building",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 480,
+        "wires": [
+            [
+                "7bac1c9fb98cd0b9",
+                "efdb09064d4774ca"
+            ]
+        ]
+    },
+    {
+        "id": "efdb09064d4774ca",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Create InfluxDB Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\n  \"temperature\": temperature,\n  \"humidity\": humidity,\n  \"co2\": co2,\n  \"illumination\": illumination,\n  \"deviceName\": deviceName,\n  \"room\": room,\n  \"floor\": floor,\n  \"Building\": Building\n}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [
+                "2071176515d2d086",
+                "122ddd6103cb22e0"
+            ]
+        ]
+    },
+    {
+        "id": "122ddd6103cb22e0",
+        "type": "influxdb out",
+        "z": "3d72baa2624fae26",
+        "influxdb": "influx_config",
+        "name": "InfluxDB Output",
+        "measurement": "sensor_data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 1050,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f7afe5de12b87cfe",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "1. Raw MQTT Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 610,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "7bac1c9fb98cd0b9",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "2. After Extract",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 810,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "2071176515d2d086",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "3. Final Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1030,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "9d1eae4a236754c1",
+        "type": "mqtt in",
+        "z": "3d72baa2624fae26",
+        "name": "MQTT Input",
+        "topic": "AM107/by-room/E001/data",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "5f103d4d985bca81",
+                "da3fcf2255ae2510"
+            ]
+        ]
+    },
+    {
+        "id": "da3fcf2255ae2510",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Extract Data Fields",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "msg",
+                "to": "payload[0].temperature",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "msg",
+                "to": "payload[0].humidity",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "co2",
+                "pt": "msg",
+                "to": "payload[0].co2",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "illumination",
+                "pt": "msg",
+                "to": "payload[0].illumination",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "deviceName",
+                "pt": "msg",
+                "to": "payload[1].deviceName",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "room",
+                "pt": "msg",
+                "to": "payload[1].room",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "floor",
+                "pt": "msg",
+                "to": "payload[1].floor",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "Building",
+                "pt": "msg",
+                "to": "payload[1].Building",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 200,
+        "wires": [
+            [
+                "cfaa316bab709c8b",
+                "94a880c882af6b3c"
+            ]
+        ]
+    },
+    {
+        "id": "94a880c882af6b3c",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Create InfluxDB Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\n  \"temperature\": temperature,\n  \"humidity\": humidity,\n  \"co2\": co2,\n  \"illumination\": illumination,\n  \"deviceName\": deviceName,\n  \"room\": room,\n  \"floor\": floor,\n  \"Building\": Building\n}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 200,
+        "wires": [
+            [
+                "10be19dbc183c3dd",
+                "4f4def22ef6bd833"
+            ]
+        ]
+    },
+    {
+        "id": "4f4def22ef6bd833",
+        "type": "influxdb out",
+        "z": "3d72baa2624fae26",
+        "influxdb": "0bb7c2c6eebe6f4b",
+        "name": "InfluxDB Output",
+        "measurement": "sensor_data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 1070,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5f103d4d985bca81",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "1. Raw MQTT Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 630,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cfaa316bab709c8b",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "2. After Extract",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 830,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "10be19dbc183c3dd",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "3. Final Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1050,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "735b9564437c7439",
+        "type": "mqtt in",
+        "z": "3d72baa2624fae26",
+        "name": "MQTT Input",
+        "topic": "AM107/by-room/B105/data",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 410,
+        "y": 300,
+        "wires": [
+            [
+                "0b3f8cc4bfbeb463",
+                "7a18efefefbc3353"
+            ]
+        ]
+    },
+    {
+        "id": "7a18efefefbc3353",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Extract Data Fields",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "msg",
+                "to": "payload[0].temperature",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "msg",
+                "to": "payload[0].humidity",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "co2",
+                "pt": "msg",
+                "to": "payload[0].co2",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "illumination",
+                "pt": "msg",
+                "to": "payload[0].illumination",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "deviceName",
+                "pt": "msg",
+                "to": "payload[1].deviceName",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "room",
+                "pt": "msg",
+                "to": "payload[1].room",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "floor",
+                "pt": "msg",
+                "to": "payload[1].floor",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "Building",
+                "pt": "msg",
+                "to": "payload[1].Building",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 300,
+        "wires": [
+            [
+                "4ec04069ea62ce38",
+                "5bdb465093d03b6e"
+            ]
+        ]
+    },
+    {
+        "id": "5bdb465093d03b6e",
+        "type": "change",
+        "z": "3d72baa2624fae26",
+        "name": "Create InfluxDB Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\n  \"temperature\": temperature,\n  \"humidity\": humidity,\n  \"co2\": co2,\n  \"illumination\": illumination,\n  \"deviceName\": deviceName,\n  \"room\": room,\n  \"floor\": floor,\n  \"Building\": Building\n}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 300,
+        "wires": [
+            [
+                "fa4ddf8e1e93346c",
+                "94809ce950efed6a"
+            ]
+        ]
+    },
+    {
+        "id": "94809ce950efed6a",
+        "type": "influxdb out",
+        "z": "3d72baa2624fae26",
+        "influxdb": "0bb7c2c6eebe6f4b",
+        "name": "InfluxDB Output",
+        "measurement": "sensor_data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 1070,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0b3f8cc4bfbeb463",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "1. Raw MQTT Data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 630,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4ec04069ea62ce38",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "2. After Extract",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 830,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "fa4ddf8e1e93346c",
+        "type": "debug",
+        "z": "3d72baa2624fae26",
+        "name": "3. Final Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1050,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "mqtt_broker",
+        "type": "mqtt-broker",
+        "name": "IoT MQTT Broker",
+        "broker": "192.168.224.55",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "influx_config",
+        "type": "influxdb",
+        "hostname": "172.17.0.2",
+        "port": "8086",
+        "protocol": "http",
+        "database": "SAE23",
+        "name": "Local InfluxDB",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "0bb7c2c6eebe6f4b",
+        "type": "influxdb",
+        "hostname": "172.17.0.2",
+        "port": 8086,
+        "protocol": "http",
+        "database": "SAE23",
+        "name": "Base",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    }
+]
