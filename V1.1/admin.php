@@ -1,55 +1,57 @@
 <?php
 session_start();
 
-// Durée du cookie (en secondes) : ici 15 minutes
+// Cookie duration (in seconds): here 15 minutes
 const COOKIE_DURATION = 00 * 00 * 15 * 60;
 
-// Identifiants administrateur (exemple codé en dur)
+// Administrator credentials (hardcoded example)
 const ADMIN_USER = 'adminA';
 const ADMIN_PASS = 'passroot';
 
-// Paramètres de base de données
+// Database connection parameters
 $servername = "localhost";
 $db_username = "adminA";
 $db_password = "passroot";
 $dbname = "sae23";
 
-// 1) Si le cookie existe mais pas la session, on recrée la session
+// 1) If cookie exists but not the session, recreate the session
 if (empty($_SESSION['is_admin']) && isset($_COOKIE['admin_logged_in']) && $_COOKIE['admin_logged_in'] === '1') {
     $_SESSION['is_admin'] = true;
 }
 
-// 2) Déconnexion si on passe ?action=logout
+// 2) Logout if passing ?action=logout
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    // Supprimer la session
+    // Remove the session
     session_unset();
     session_destroy();
-    // Expirer le cookie
+    // Expire the cookie
     setcookie('admin_logged_in', '', time() - 3600, '/');
     header('Location: admin.php');
     exit;
 }
 
+// Handle login form submission
 $errorMessage = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
     if ($username === ADMIN_USER && $password === ADMIN_PASS) {
-        // Authentification réussie : créer la session
+        // Successful authentication: create session
         $_SESSION['is_admin'] = true;
-        // Créer un cookie valide 7 jours
+        // Create a cookie valid for 7 days
         setcookie('admin_logged_in', '1', time() + COOKIE_DURATION, '/');
         header('Location: admin.php');
         exit;
     } else {
-        $errorMessage = 'Nom ou mot de passe invalide.';
+        $errorMessage = 'Invalid username or password.';
     }
 }
 
+// Check if user is logged in
 $isLoggedIn = !empty($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 
-// Connexion à la base de données (seulement si connecté)
+// Database connection variables (only if logged in)
 $conn = null;
 $tables = [];
 $selectedTable = $_GET['table'] ?? '';
@@ -58,36 +60,38 @@ $errorDb = '';
 
 if ($isLoggedIn) {
     try {
+        // Connect to database
         $conn = mysqli_connect($servername, $db_username, $db_password, $dbname);
-        // Gérer les mises à jour de visibilité
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Supprimer toutes les entrées pour repartir à zéro
-    mysqli_query($conn, "DELETE FROM visible_tables");
+        
+        // Handle table visibility updates
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Delete all entries to start fresh
+            mysqli_query($conn, "DELETE FROM visible_tables");
 
-    if (isset($_POST['visible_tables']) && is_array($_POST['visible_tables'])) {
-        foreach ($_POST['visible_tables'] as $table) {
-            $tableSafe = mysqli_real_escape_string($conn, $table);
-            mysqli_query($conn, "INSERT INTO visible_tables (table_name) VALUES ('$tableSafe')");
+            // Insert selected visible tables
+            if (isset($_POST['visible_tables']) && is_array($_POST['visible_tables'])) {
+                foreach ($_POST['visible_tables'] as $table) {
+                    $tableSafe = mysqli_real_escape_string($conn, $table);
+                    mysqli_query($conn, "INSERT INTO visible_tables (table_name) VALUES ('$tableSafe')");
+                }
+            }
+            // Otherwise nothing to insert => visible_tables is empty (all deleted)
         }
-    }
-    // Sinon rien à insérer => visible_tables est vide (toutes supprimées)
-}
 
-
-// Récupérer la liste des tables visibles
-$visibleResult = mysqli_query($conn, "SELECT table_name FROM visible_tables");
-$visibleTables = [];
-if ($visibleResult) {
-    while ($row = mysqli_fetch_assoc($visibleResult)) {
-        $visibleTables[] = $row['table_name'];
-    }
-}
+        // Get list of visible tables
+        $visibleResult = mysqli_query($conn, "SELECT table_name FROM visible_tables");
+        $visibleTables = [];
+        if ($visibleResult) {
+            while ($row = mysqli_fetch_assoc($visibleResult)) {
+                $visibleTables[] = $row['table_name'];
+            }
+        }
 
         if (!$conn) {
-            throw new Exception("Connexion échouée: " . mysqli_connect_error());
+            throw new Exception("Connection failed: " . mysqli_connect_error());
         }
         
-        // Récupérer la liste des tables
+        // Get list of all tables in database
         $result = mysqli_query($conn, "SHOW TABLES");
         if ($result) {
             while ($row = mysqli_fetch_array($result)) {
@@ -95,7 +99,7 @@ if ($visibleResult) {
             }
         }
         
-        // Si une table est sélectionnée, récupérer ses données
+        // If a table is selected, retrieve its data
         if ($selectedTable && in_array($selectedTable, $tables)) {
             $query = "SELECT * FROM `" . mysqli_real_escape_string($conn, $selectedTable) . "` LIMIT 100";
             $result = mysqli_query($conn, $query);
@@ -117,11 +121,11 @@ if ($visibleResult) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin – SAÉ 23</title>
-  <!-- Lien vers votre CSS principal -->
+  <!-- Link to main CSS file -->
   <link rel="stylesheet" href="../style/style1.css" />
-  <!-- Ajustements très ciblés pour login + tableau Admin -->
+  <!-- Very targeted adjustments for login + Admin table -->
   <style>
-    /* Conteneur du formulaire de connexion */
+    /* Login form container */
     .login-container {
       max-width: 360px;
       margin: 4rem auto;
@@ -165,7 +169,7 @@ if ($visibleResult) {
       margin-bottom: 1rem;
     }
 
-    /* Conteneur général Admin */
+    /* General Admin container */
     .admin-container {
       max-width: 95%;
       margin: 2rem auto;
@@ -191,7 +195,7 @@ if ($visibleResult) {
       color: #a93226;
     }
 
-    /* Navigation des tables */
+    /* Table navigation */
     .table-nav {
       margin: 1.5rem 0;
       padding: 1rem;
@@ -222,7 +226,7 @@ if ($visibleResult) {
       color: #ffffff;
     }
 
-    /* Tableau Admin */
+    /* Admin table styling */
     .admin-table {
       width: 100%;
       border-collapse: collapse;
@@ -251,7 +255,7 @@ if ($visibleResult) {
       vertical-align: top;
     }
 
-    /* Infos de la base */
+    /* Database info styling */
     .db-info {
       background: #e8f5e8;
       padding: 1rem;
@@ -268,7 +272,7 @@ if ($visibleResult) {
       margin-bottom: 1rem;
     }
 
-    /* Responsive */
+    /* Responsive design */
     @media (max-width: 768px) {
       .table-links {
         flex-direction: column;
@@ -285,7 +289,7 @@ if ($visibleResult) {
   </style>
 </head>
 <body>
-  <!-- SEUL bloc HEADER / NAV -->
+  <!-- HEADER / NAVIGATION BLOCK -->
   <header class="header">
     <nav class="nav container">
       <a href="index.html" class="logo">Data Processing</a>
@@ -301,7 +305,7 @@ if ($visibleResult) {
   </header>
 
   <?php if (!$isLoggedIn): ?>
-    <!-- FORMULAIRE DE CONNEXION -->
+    <!-- LOGIN FORM -->
     <div class="login-container">
       <h2>Connexion Admin</h2>
       <?php if ($errorMessage): ?>
@@ -318,7 +322,7 @@ if ($visibleResult) {
       </form>
     </div>
   <?php else: ?>
-    <!-- ESPACE ADMIN APRÈS CONNEXION -->
+    <!-- ADMIN DASHBOARD AFTER LOGIN -->
     <div class="admin-container">
       <h1>Espace Admin - Base de données SAÉ23</h1>
       <div class="admin-logout">
@@ -326,36 +330,38 @@ if ($visibleResult) {
       </div>
 
       <?php if ($errorDb): ?>
+        <!-- Database error display -->
         <div class="db-error">
           <strong>Erreur de connexion à la base de données :</strong><br>
           <?= htmlspecialchars($errorDb) ?>
         </div>
       <?php elseif ($conn): ?>
+        <!-- Database connection success -->
         <div class="db-info">
           <strong>✓ Connecté à la base de données :</strong> <?= htmlspecialchars($dbname) ?><br>
           <strong>Serveur :</strong> <?= htmlspecialchars($servername) ?> | 
           <strong>Tables trouvées :</strong> <?= count($tables) ?>
         </div>
 
-      <form method="POST">
-  <div class="table-links" style="margin-top: 1rem; flex-direction: column;">
-    <?php foreach ($tables as $table): ?>
-      <label style="display: flex; align-items: center; gap: 0.5rem;">
-        <input type="checkbox" name="visible_tables[]" value="<?= htmlspecialchars($table) ?>"
-               <?= in_array($table, $visibleTables) ? 'checked' : '' ?> />
-        <?= htmlspecialchars($table) ?>
-      </label>
-    <?php endforeach; ?>
-  </div>
-  <button type="submit" class="btn" style="margin-top: 1rem;">Mettre à jour la visibilité</button>
-</form>
+        <!-- Form to manage table visibility -->
+        <form method="POST">
+          <div class="table-links" style="margin-top: 1rem; flex-direction: column;">
+            <?php foreach ($tables as $table): ?>
+              <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" name="visible_tables[]" value="<?= htmlspecialchars($table) ?>"
+                       <?= in_array($table, $visibleTables) ? 'checked' : '' ?> />
+                <?= htmlspecialchars($table) ?>
+              </label>
+            <?php endforeach; ?>
+          </div>
+          <button type="submit" class="btn" style="margin-top: 1rem;">Mettre à jour la visibilité</button>
+        </form>
 
         <?php if (count($tables) > 0): ?>
+          <!-- Table navigation -->
           <div class="table-nav">
             <h3>Sélectionner une table :</h3>
             <div class="table-links">
-              <!-- Formulaire pour choisir les tables visibles -->
-
               <?php foreach ($tables as $table): ?>
                 <a href="admin.php?table=<?= urlencode($table) ?>" 
                    class="<?= $selectedTable === $table ? 'active' : '' ?>">
@@ -366,6 +372,7 @@ if ($visibleResult) {
           </div>
 
           <?php if ($selectedTable && count($tableData) > 0): ?>
+            <!-- Display selected table data -->
             <h3>Données de la table : <?= htmlspecialchars($selectedTable) ?></h3>
             <p><em>Affichage des 100 premiers enregistrements</em></p>
             
@@ -391,13 +398,16 @@ if ($visibleResult) {
             </div>
             
           <?php elseif ($selectedTable && count($tableData) === 0): ?>
+            <!-- Empty table message -->
             <p class="projet-paragraphe">La table "<?= htmlspecialchars($selectedTable) ?>" est vide ou n'existe pas.</p>
             
           <?php elseif (!$selectedTable): ?>
+            <!-- No table selected message -->
             <p class="projet-paragraphe">Sélectionnez une table ci-dessus pour voir son contenu.</p>
           <?php endif; ?>
           
         <?php else: ?>
+          <!-- No tables found message -->
           <p class="projet-paragraphe">Aucune table trouvée dans la base de données.</p>
         <?php endif; ?>
         
@@ -405,7 +415,7 @@ if ($visibleResult) {
     </div>
   <?php endif; ?>
 
-  <!-- FOOTER unique -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
       <p class="footer-text">© 2025 SAÉ 23 Groupe B – Tous droits réservés.</p>
@@ -420,7 +430,7 @@ if ($visibleResult) {
   </footer>
 
   <?php 
-  // Fermer la connexion
+  // Close database connection
   if ($conn) {
       mysqli_close($conn);
   }
