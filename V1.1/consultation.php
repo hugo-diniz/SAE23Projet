@@ -1,5 +1,5 @@
 <?php
-// Connexion à la base
+// DataBase Connexion
 $servername = "localhost";
 $db_username = "adminA";
 $db_password = "passroot";
@@ -15,13 +15,13 @@ $error = '';
 if (!$conn) {
     $error = "Connexion à la base de données échouée : " . mysqli_connect_error();
 } else {
-    // Récupération des tables visibles
+    // Retrieving visible tables
     $result = mysqli_query($conn, "SELECT table_name FROM visible_tables");
     while ($row = mysqli_fetch_assoc($result)) {
         $visibleTables[] = $row['table_name'];
     }
 
-    // Sélection et affichage d'une table
+    // Table selection and display
     if ($selectedTable && in_array($selectedTable, $visibleTables)) {
         $safeTable = mysqli_real_escape_string($conn, $selectedTable);
         $res = mysqli_query($conn, "SELECT * FROM `$safeTable` LIMIT 100");
