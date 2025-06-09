@@ -44,9 +44,10 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 
 
 
-## ⚙️ Fonctionnalités principales
+## ⚙Fonctionnalités principales
 
 - Possibilité de choisir les tables que les non-admins peuvent voir
+- Choix direct des salles
 
 
 ## Déploiement local
@@ -59,7 +60,7 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 ### Nécessaire avant chaque utilisation
 
 ```bash
-# Lancer les scripts d’installation
+# Mettre dans crontab -e si possible
 docker start influxdbRT
 docker start grafanaRT
 docker start noderedRT
