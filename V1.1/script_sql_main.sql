@@ -1,8 +1,8 @@
--- Création de la base
+-- DataBase creation
 CREATE DATABASE Mesures;
 USE Mesures;
 
--- Table Batiment
+-- Batiment Table
 CREATE TABLE Batiment (
     IdBat INT AUTO_INCREMENT PRIMARY KEY,
     NomBat VARCHAR(100) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE Batiment (
     MDPGest VARCHAR(255)
 );
 
--- Table Salle
+--  Salle Table
 CREATE TABLE Salle (
     NomSalle VARCHAR(100) PRIMARY KEY,
     Type VARCHAR(50),
@@ -19,13 +19,13 @@ CREATE TABLE Salle (
     FOREIGN KEY (IdBat) REFERENCES Batiment(IdBat)
 );
 
--- Table visible_tables
+-- visible_tables Table
 CREATE TABLE IF NOT EXISTS visible_tables (
   table_name VARCHAR(100) PRIMARY KEY
 );
 
 
--- Table Capteur
+-- Capteur Table
 CREATE TABLE Capteur (
     NomCap VARCHAR(100) PRIMARY KEY,
     Type VARCHAR(50),
@@ -34,7 +34,7 @@ CREATE TABLE Capteur (
     FOREIGN KEY (NomSalle) REFERENCES Salle(NomSalle)
 );
 
--- Table Mesure
+-- Mesure Table
 CREATE TABLE Mesure (
     IdMes INT AUTO_INCREMENT PRIMARY KEY,
     Date DATE,
@@ -44,7 +44,7 @@ CREATE TABLE Mesure (
     FOREIGN KEY (NomCap) REFERENCES Capteur(NomCap)
 );
 
--- Table Admin
+-- Admin Table
 CREATE TABLE Admin (
     NomAdmin VARCHAR(100) PRIMARY KEY,
     MdpAdmin VARCHAR(255)
