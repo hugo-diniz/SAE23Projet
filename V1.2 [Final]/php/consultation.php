@@ -1,28 +1,28 @@
 <?php
-// === Configuration de la base de données ===
+// ===  Database configuration ===
 $servername = "localhost";
 $db_username = "adminA";
 $db_password = "passroot";
 $dbname = "sae23";
 
-// === Variables d'initialisation ===
+// === Initialization variables ===
 $conn = mysqli_connect($servername, $db_username, $db_password, $dbname);
 $visibleTables = [];
 $selectedTable = $_GET['table'] ?? '';
 $tableData = [];
 $error = '';
 
-// === Vérification de la connexion ===
+// === Connection check ===
 if (!$conn) {
     $error = "Connexion à la base de données échouée : " . mysqli_connect_error();
 } else {
-    // Récupération des tables visibles
+    // Retrieving visible tables
     $result = mysqli_query($conn, "SELECT table_name FROM visible_tables");
     while ($row = mysqli_fetch_assoc($result)) {
         $visibleTables[] = $row['table_name'];
     }
 
-    // Sélection et affichage d'une table
+    // Table selection and display
     if ($selectedTable && in_array($selectedTable, $visibleTables)) {
         $safeTable = mysqli_real_escape_string($conn, $selectedTable);
         $res = mysqli_query($conn, "SELECT * FROM `$safeTable` LIMIT 100");
@@ -35,7 +35,7 @@ if (!$conn) {
     }
 }
 
-// === Configuration PDO pour les statistiques ===
+// === PDO configuration for statistics ===
 $host = 'localhost';
 $db = 'sae23';
 $user = 'adminA';
@@ -55,11 +55,11 @@ $resultat = null;
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 
-    // Récupérer la liste des capteurs pour le formulaire
+    // Retrieve the list of sensors for the form
     $capteurs = $pdo->query("SELECT DISTINCT NomCap FROM Mesure ORDER BY NomCap")->fetchAll();
 
     if ($filtreCapteur) {
-        // Requête avec filtre sur NomCap
+        // Query with filter on CapName
         $sql = "
             SELECT NomCap,
                    MIN(Valeur) AS MinValeur,
@@ -177,7 +177,7 @@ try {
         <?php elseif (empty($visibleTables)): ?>
             <p>Aucune table visible n'a été définie par l'administrateur.</p>
         <?php else: ?>
-            <!-- Section des liens vers les tables -->
+            <!-- Table links section -->
             <div class="table-links">
                 <?php foreach ($visibleTables as $table): ?>
                     <a href="consultation.php?table=<?= urlencode($table) ?>"
@@ -187,7 +187,7 @@ try {
                 <?php endforeach; ?>
             </div>
 
-            <!-- Affichage des données de la table sélectionnée -->
+            <!-- Display data from the selected table -->
             <?php if ($selectedTable): ?>
                 <h2>Données de la table : <?= htmlspecialchars($selectedTable) ?></h2>
                 <?php if (!empty($tableData)): ?>
@@ -219,11 +219,11 @@ try {
         <?php endif; ?>
         <br>
 
-        <!-- Section des statistiques des capteurs -->
+        <!-- Sensor statistics section -->
         <div id="mes2">
             <h2>Choisir un Capteur</h2>
             <form method="GET">
-                <!-- Conserver la table sélectionnée si elle existe -->
+                <!-- Keep the selected table if it exists -->
                 <?php if ($selectedTable): ?>
                     <input type="hidden" name="table" value="<?= htmlspecialchars($selectedTable) ?>">
                 <?php endif; ?>
