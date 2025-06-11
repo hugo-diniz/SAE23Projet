@@ -44,7 +44,7 @@ L’objectif est de centraliser les informations réseau dans une interface acce
 
 
 
-## ⚙Fonctionnalités principales
+## Fonctionnalités principales
 
 - Possibilité de choisir les tables que les non-admins peuvent voir
 - Choix direct des salles
