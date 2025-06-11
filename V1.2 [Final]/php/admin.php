@@ -356,7 +356,7 @@ if (isset($_POST['insert_complete'])) {
             $stmt->bindParam(':nomGest', $_POST['nomGest']);
             $stmt->bindParam(':mdpGest', $_POST['mdpGest']);
             $stmt->execute();
-            echo "✅ Bâtiment inséré avec succès !";
+            echo "Bâtiment inséré avec succès !";
             
         } elseif ($table === 'Capteur' && isset($_POST['nomCap'], $_POST['type'], $_POST['unite'], $_POST['nomSalle'])) {
             $sql = "INSERT INTO `Capteur` (`NomCap`, `Type`, `Unite`, `NomSalle`) VALUES (:nomCap, :type, :unite, :nomSalle)";
@@ -366,14 +366,14 @@ if (isset($_POST['insert_complete'])) {
             $stmt->bindParam(':unite', $_POST['unite']);
             $stmt->bindParam(':nomSalle', $_POST['nomSalle']);
             $stmt->execute();
-            echo "✅ Capteur inséré avec succès !";
+            echo "Capteur inséré avec succès !";
             
         } else {
-            echo "❌ Données manquantes pour l'insertion.";
+            echo "Données manquantes pour l'insertion.";
         }
         
     } catch (PDOException $e) {
-        echo "❌ Erreur lors de l'insertion : " . $e->getMessage();
+        echo "Erreur lors de l'insertion : " . $e->getMessage();
     }
 }
 ?>
