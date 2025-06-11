@@ -1,0 +1,439 @@
+/* Reset */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global */
+body {
+  background: #fff;
+  color: #1d1d1f;
+  line-height: 1.6;
+  font-weight: 400;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  flex: 1;
+}
+
+/* Header/Nav */
+.header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #d2d2d7;
+  z-index: 1000;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.logo {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #1d1d1f;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.nav-links li a {
+  color: #1d1d1f;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.nav-links li a:hover,
+.nav-links li a.active {
+  border-bottom-color: #0071e3;
+  font-weight: 600;
+}
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #0071e3;
+  cursor: pointer;
+}
+
+.outil-image {
+  max-width: 900px; /* à ajuster */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+/* Hero */
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+}
+.hero h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.hero p {
+  font-size: 1.25rem;
+  color: #6e6e73;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Buttons */
+.btn {
+  background: #0071e3;
+  color: white;
+  padding: 0.7rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  user-select: none;
+}
+.btn:hover {
+  background: #005bb5;
+}
+
+/* Features */
+.features {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  gap: 1rem;
+}
+.feature {
+  background: #f5f5f7;
+  border-radius: 16px;
+  padding: 2rem;
+  flex: 1;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+  text-align: center;
+}
+.feature h2 {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+.feature p {
+  color: #6e6e73;
+  font-size: 1rem;
+}
+
+/* About */
+.about {
+  margin-top: 4rem;
+  text-align: center;
+}
+.about h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.about p {
+  font-size: 1.1rem;
+  color: #6e6e73;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Team */
+.team {
+  margin-top: 3rem;
+  text-align: center;
+}
+.team h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+.team-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.team-card {
+  background: #f5f5f7;
+  border-radius: 20px;
+  padding: 1rem;
+  width: 220px;
+  box-shadow: 0 1px 8px rgb(0 0 0 / 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.team-card:hover {
+  box-shadow: 0 6px 15px rgb(0 0 0 / 0.15);
+}
+.team-card img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  height: 220px;
+}
+.team-card h3 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.team-card p {
+  color: #6e6e73;
+  font-size: 0.95rem;
+}
+
+/* Projet Table */
+.projet-tableau-techno {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.projet-tableau-techno th,
+.projet-tableau-techno td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d2d2d7;
+  text-align: left;
+}
+.projet-tableau-techno th {
+  background: #f5f5f7;
+  font-weight: 600;
+}
+.projet-tableau-techno tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Terminal */
+.terminal-container {
+  background: #f5f5f7;
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+  margin: 2rem 0;
+}
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.terminal-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.terminal-copy-btn {
+  background: #0071e3;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.terminal-copy-btn:hover {
+  background: #005bb5;
+}
+.terminal-content {
+  background: #fff;
+  border: 1px solid #d2d2d7;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Login / Admin */
+.login-container {
+  max-width: 360px;
+  margin: 4rem auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.login-container h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 1.5rem;
+}
+.login-container label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  color: #1d1d1f;
+}
+.login-container input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #d2d2d7;
+  border-radius: 8px;
+  background: #f5f5f7;
+  margin-bottom: 1rem;
+}
+.login-container input:focus {
+  outline: none;
+  border-color: #0071e3;
+  box-shadow: 0 0 0 2px rgba(0,113,227,0.2);
+}
+.error-message {
+  color: #c0392b;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Admin Container */
+.admin-container {
+  max-width: 90%;
+  margin: 2rem auto;
+}
+.admin-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 1rem;
+}
+.admin-logout {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+.admin-logout a {
+  color: #c0392b;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.admin-logout a:hover {
+  color: #a93226;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.admin-table th,
+.admin-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d2d2d7;
+  text-align: left;
+}
+.admin-table th {
+  background: #f5f5f7;
+  font-weight: 600;
+}
+.admin-table tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: #6e6e73;
+  border-top: 1px solid #d2d2d7;
+  margin-top: auto;
+}
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.footer-text {
+  margin-bottom: 0.5rem;
+}
+.footer-legal {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+.footer-github a {
+  color: #0071e3;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+.footer-github a:hover {
+  color: #005bb5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .features { flex-direction: column; }
+  .team-cards { flex-direction: column; align-items: center; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    border-radius: 0 0 0 16px;
+    box-shadow: -2px 0 12px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    z-index: 2000;
+  }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.1rem; }
+  .login-container {
+    margin: 3rem 1rem;
+    padding: 1.5rem 1rem;
+  }
+  .login-container h2 { font-size: 1.3rem; }
+  .login-container input {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.7rem;
+  }
+  .btn { font-size: 0.95rem; padding: 0.6rem 1.5rem; }
+  .admin-container {
+    margin: 1rem 1rem;
+  }
+  .admin-container h1 { font-size: 1.5rem; }
+  .admin-table th,
+  .admin-table td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  .footer-text,
+  .footer-github a { font-size: 0.85rem; }
+  .footer-legal { font-size: 0.8rem; }
+}
