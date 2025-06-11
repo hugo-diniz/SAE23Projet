@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accueil - SAé23</title>
+  <link rel="stylesheet" href="style/style1.css" /> 
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">SAé 23</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="presentation.html">Présentation</a></li>
+        <li><a href="projet.html">Projet</a></li>
+        <li><a href="php/admin.php"<?php if(basename($_SERVER['PHP_SELF'])=='admin.php') echo ' class="active"'; ?>>Admin</a></li>
+         <li><a href="php/consultation.php">Données</a></li>
+      </ul>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Bienvenue sur notre projet</h1>
+      <p>Ce site va vous montrer notre travail durannt cette SAé</p>
+      <a href="presentation.html" class="btn">Notre équipe</a>
+      <a href="projet.html" class="btn">Notre projet</a>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h2>Simple</h2>
+        <p>Site simple</p>
+      </div>
+      <div class="feature">
+        <h2>Responsive</h2>
+        <p>Pour tous les types d'écrans</p>
+      </div>
+      <div class="feature">
+        <h2>Modifiable</h2>
+        <p>Modifiable avec le PHP et le SQL</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© SAé 23 GroupeB - Tous droits réservés</p>
+  </footer>
+
+  <script src="script/script.js"></script>
+</body>
+</html>
