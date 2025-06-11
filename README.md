@@ -9,14 +9,14 @@ Réalisé par : **Timeo Champigny, Sarah Perez, Oihan Martin dit-Neuville, Hugo 
 **Année BUT1 2024-2025**
 
 
-## 📌 Contexte du projet
+## Contexte du projet
 
 Dans le cadre de la SAÉ 23, nous devons concevoir une solution de supervision réseau pour une infrastructure simulée.
 Ce projet doit nous mettre à la place d'un professionel travaillant en R&T, chargé de développer des **outils informatiques adaptés aux besoins de l’entreprise**, intégrant **gestion de données**, **traitements automatisés** et **interface web** conviviale.
 L’objectif est de centraliser les informations réseau dans une interface accessible et fonctionnelle.
 
 
-## 🎯 Objectifs
+## Objectifs
 
 - Mettre en place une chaîne de traitement via des conteneurs.
 - Créer un dashboard **Grafana** complet.
