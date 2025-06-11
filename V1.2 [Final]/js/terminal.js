@@ -1,7 +1,7 @@
 // terminal.js
 
 /**
- * Copie dans le presse-papiers le contenu du <pre id="terminal-content">
+ * Copies the contents of the <pre id=“terminal-content”> to the clipboard.
  */
 function copyTerminalContent() {
   const pre = document.getElementById('terminal-content');
@@ -13,7 +13,7 @@ function copyTerminalContent() {
   const textToCopy = pre.innerText;
 
   if (!navigator.clipboard) {
-    // Fallback pour anciens navigateurs
+    // Fallback for older browsers
     const range = document.createRange();
     range.selectNodeContents(pre);
     const sel = window.getSelection();
@@ -28,7 +28,7 @@ function copyTerminalContent() {
     return;
   }
 
-  // API moderne
+  // Modern API
   navigator.clipboard.writeText(textToCopy)
     .then(() => {
       const btn = document.querySelector('.terminal-copy-btn');
