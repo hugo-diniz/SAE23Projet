@@ -1,30 +1,30 @@
 <?php
 session_start();
 
-// Durée du cookie (en secondes) : ici 15 minutes
+// Cookie duration 15min
 const COOKIE_DURATION = 00 * 00 * 15 * 60;
 
-// Identifiants administrateur 
+// Administrator login
 const ADMIN_USER = 'adminA';
 const ADMIN_PASS = 'passroot';
 
-// Paramètres de base de données
+// Data base settings
 $servername = "localhost";
 $db_username = "adminA";
 $db_password = "passroot";
 $dbname = "sae23";
 
-// 1) Si le cookie existe mais pas la session, on recrée la session
+// 1) If the cookie exists but not the session, recreate the session
 if (empty($_SESSION['is_admin']) && isset($_COOKIE['admin_logged_in']) && $_COOKIE['admin_logged_in'] === '1') {
     $_SESSION['is_admin'] = true;
 }
 
-// 2) Déconnexion si on passe ?action=logout
+// 2) Logout if you pass ?action=logout
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     // Supprimer la session
     session_unset();
     session_destroy();
-    // Expirer le cookie
+    // Cookie expiration
     setcookie('admin_logged_in', '', time() - 3600, '/');
     header('Location: admin.php');
     exit;
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if ($username === ADMIN_USER && $password === ADMIN_PASS) {
-        // Authentification réussie : créer la session
+        // Authentication successful: create session
         $_SESSION['is_admin'] = true;
         // Créer un cookie valide 7 jours
         setcookie('admin_logged_in', '1', time() + COOKIE_DURATION, '/');
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $isLoggedIn = !empty($_SESSION['is_admin']) && $_SESSION['is_admin'] === true;
 
-// Connexion à la base de données (seulement si connecté)
+// Database connection (only if connected)
 $conn = null;
 $tables = [];
 $selectedTable = $_GET['table'] ?? '';
@@ -59,7 +59,7 @@ $errorDb = '';
 if ($isLoggedIn) {
     try {
         $conn = mysqli_connect($servername, $db_username, $db_password, $dbname);
-        // Gérer les mises à jour de visibilité
+        // Manage visibility updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Supprimer toutes les entrées pour repartir à zéro
     mysqli_query($conn, "DELETE FROM visible_tables");
@@ -70,11 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_query($conn, "INSERT INTO visible_tables (table_name) VALUES ('$tableSafe')");
         }
     }
-    // Sinon rien à insérer => visible_tables est vide (toutes supprimées)
+    // Otherwise nothing to insert => visible_tables is empty (all deleted).
 }
 
 
-// Récupérer la liste des tables visibles
+// Retrieve the list of visible tables
 $visibleResult = mysqli_query($conn, "SELECT table_name FROM visible_tables");
 $visibleTables = [];
 if ($visibleResult) {
@@ -87,7 +87,7 @@ if ($visibleResult) {
             throw new Exception("Connexion échouée: " . mysqli_connect_error());
         }
         
-        // Récupérer la liste des tables
+        // Retrieve table list
         $result = mysqli_query($conn, "SHOW TABLES");
         if ($result) {
             while ($row = mysqli_fetch_array($result)) {
@@ -95,7 +95,7 @@ if ($visibleResult) {
             }
         }
         
-        // Si une table est sélectionnée, récupérer ses données
+        // If a table is selected, retrieve its data
         if ($selectedTable && in_array($selectedTable, $tables)) {
             $query = "SELECT * FROM `" . mysqli_real_escape_string($conn, $selectedTable) . "` LIMIT 100";
             $result = mysqli_query($conn, $query);
@@ -119,9 +119,9 @@ if ($visibleResult) {
   <title>Admin – SAÉ 23</title>
   <!-- Lien vers votre CSS principal -->
   <link rel="stylesheet" href="../style/style1.css" />
-  <!-- Ajustements très ciblés pour login + tableau Admin -->
+  <!-- Highly targeted adjustments for login + Admin panel -->
   <style>
-    /* Conteneur du formulaire de connexion */
+    /* Login form container */
     .login-container {
       max-width: 360px;
       margin: 4rem auto;
@@ -165,7 +165,7 @@ if ($visibleResult) {
       margin-bottom: 1rem;
     }
 
-    /* Conteneur général Admin */
+    /* General container Admin */
     .admin-container {
       max-width: 95%;
       margin: 2rem auto;
@@ -191,7 +191,7 @@ if ($visibleResult) {
       color: #a93226;
     }
 
-    /* Navigation des tables */
+    /* TABLE NAVIGATION */
     .table-nav {
       margin: 1.5rem 0;
       padding: 1rem;
@@ -222,7 +222,7 @@ if ($visibleResult) {
       color: #ffffff;
     }
 
-    /* Tableau Admin */
+    /* ADMIN TABLE */
     .admin-table {
       width: 100%;
       border-collapse: collapse;
@@ -251,7 +251,7 @@ if ($visibleResult) {
       vertical-align: top;
     }
 
-    /* Infos de la base */
+    /* database information */
     .db-info {
       background: #e8f5e8;
       padding: 1rem;
@@ -301,7 +301,7 @@ if ($visibleResult) {
   </header>
 
   <?php if (!$isLoggedIn): ?>
-    <!-- FORMULAIRE DE CONNEXION -->
+    <!-- LOGIN FORM -->
     <div class="login-container">
       <h2>Connexion Admin</h2>
       <?php if ($errorMessage): ?>
@@ -318,7 +318,7 @@ if ($visibleResult) {
       </form>
     </div>
   <?php else: ?>
-    <!-- ESPACE ADMIN APRÈS CONNEXION -->
+    <!-- ADMIN SPACE AFTER CONNECTION -->
     <div class="admin-container">
       <h1>Espace Admin - Base de données SAÉ23</h1>
       <div class="admin-logout">
@@ -338,13 +338,13 @@ if ($visibleResult) {
         </div>
 
 <?php
-// Configuration connexion DB
+// Data base configuration connection
 $host = 'localhost';
 $dbname = 'sae23';
 $username = 'adminA';
 $password = 'passroot';
 
-// SOLUTION 2 : Gestion de l'insertion complète
+// SOLUTION 2: Full insertion management
 if (isset($_POST['insert_complete'])) {
     $table = $_POST['table'];
     
@@ -445,7 +445,7 @@ if (isset($_POST['insert_complete'])) {
     </div>
   <?php endif; ?>
 
-  <!-- FOOTER unique -->
+  <!-- unique FOOTER -->
   <footer class="footer">
     <div class="footer-container">
       <p class="footer-text">© 2025 SAÉ 23 Groupe B – Tous droits réservés.</p>
@@ -460,7 +460,7 @@ if (isset($_POST['insert_complete'])) {
   </footer>
 
   <?php 
-  // Fermer la connexion
+  // Close connection
   if ($conn) {
       mysqli_close($conn);
   }
