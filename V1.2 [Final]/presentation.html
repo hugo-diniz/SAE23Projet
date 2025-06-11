@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Présentation - Equipe</title>
+  <link rel="stylesheet" href="style/style1.css" />
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">SAé 23</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="presentation.html" class="active">Présentation</a></li>
+        <li><a href="projet.html">Projet</a></li>
+        <li><a href="php/admin.php"<?php if(basename($_SERVER['PHP_SELF'])=='admin.php') echo ' class="active"'; ?>>Admin</a></li>
+         <li><a href="php/consultation.php">Données</a></li>
+      </ul>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="about">
+      <h1>À propos de cette équipe</h1>
+      <p>Cette équipe est composée de 4 personnes, 4 étudiants en réseaux & télécommunications, voici la liste de cette équipe de projet
+      </p>
+    </section>
+
+    <section class="team">
+      <h2>Notre équipe</h2>
+      <div class="team-cards">
+        <div class="team-card">
+          <h3>Hugo Diniz</h3>
+          <p>Etudiant en Réseaux et Télécommunications</p>
+          <a href="pdf/hugo_diniz.pdf" download>Télécharger le rapport d'expérience (PDF)</a>
+        </div>
+        <div class="team-card">
+          <h3>Oihan Martin dit Neuville</h3>
+          <p>Etudiant en Réseaux et Télécommunications</p>
+          <a href="pdf/oihan_martin.PDF" download>Télécharger le rapport d'expérience (PDF)</a>
+        </div>
+        <div class="team-card">
+          <h3>Timéo Champigny</h3>
+          <p>Etudiant en Réseaux et Télécommunications</p>
+          <a href="pdf/timeo_champigny.pdf" download>Télécharger le rapport d'expérience (PDF)</a>
+        </div>
+        <div class="team-card">
+          <h3>Sarah Perez </h3>
+          <p>Etudiante en Réseaux et Télécommunications</p>
+          <a href="pdf/sarah_perez.pdf" download>Télécharger le rapport d'expérience (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="team">
+      <h2> Qui sommes nous ?</h2>
+      <p> Ce projet est constitué d'un groupe de 4 étudiants du BUT Réseaux et Télécommunications de Blagnac. </p>
+    </section>
+    </section>
+    <br>
+
+    <section class="tools">
+      <h2>Outils utilisés</h2>
+      <br>
+      <ul>
+        <li><a href="https://github.com/hugo-diniz/SAE23Projet" target="_blank">GitHub</a> - Gestion de version et dépôt du code</li><br>
+        <li>Gantt<img src="images/gantt.png" alt="Gantt" class="outil-image"/></li><br>
+        <li> Trello
+        <a href="https://trello.com/b/gvOcttfZ/conception-des-produits">
+          <img src="images/trello.png" alt="Trello" class="outil-image"/>
+        </a></li>
+      </ul>
+    </section>
+    <br>
+    
+   <section class="issues">
+      <h2>Problèmes rencontrés et solutions apportées</h2>
+      <br>
+      <ul>
+        <li>
+          <strong>Problème :</strong> Connexion de Node-RED à MQTT Explorer impossible.<br />
+          <strong>Cause :</strong> Problème de configuration ou de compatibilité entre les ports utilisés.<br />
+          <strong>Solution :</strong> Recherche de documentation, essais multiples, vérification des ports Docker, et ajustement des paramètres MQTT pour établir la communication.
+        </li>
+        <br>
+        <li>
+          <strong>Problème :</strong> Connexion au SGBD (base de données) depuis le site web.<br />
+          <strong>Cause :</strong> Mauvais paramètres de connexion (utilisateur, mot de passe, ou hôte) ou configuration XAMPP.<br />
+          <strong>Solution :</strong> Renseignement auprès du professeur, ajustement de la base de données, mise à jour du fichier de configuration PHP pour rétablir la connexion.
+        </li>
+      </ul>
+    </section>
+    
+  </main>
+
+  <footer class="footer">
+    <p>© SAé 23 Groupe B - Tous droits réservés</p>
+  </footer>
+
+  <script src="script/script.js"></script>
+</body>
+</html>
